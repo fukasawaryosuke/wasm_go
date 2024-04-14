@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebAssembly vs JavaScript</title>
+</head>
+<body>
+    <h1>Wasm vs JS</h1>
+    <button onclick="testCalculateAverage()">Run JavaScript</button>
+    <button onclick="testWasmCalculateAverage()">Run WebAssembly</button>
+    <script>
+        // 乱数を生成し、その平均を計算する関数
+function calculateAverage() {
+    let sum = 0;
+    for (let i = 0; i < 1000; i++) {
+        sum += Math.random();
+    }
+    return sum / 1000;
+}
+
+// テスト用の関数
+function testCalculateAverage() {
+    console.time("average-js");
+    calculateAverage();
+    console.timeEnd("average-js");
+}
+
+// WebAssemblyを使用して平均を計算する関数
+function testWasmCalculateAverage() {
+    console.time("average-wasm");
+    calculateAverage();
+    console.timeEnd("average-wasm");
+}
+
+    </script>
+    <script src="main.wasm"></script> <!-- WebAssemblyをロードする -->
+</body>
+</html>
